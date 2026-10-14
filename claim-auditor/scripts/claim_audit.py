@@ -42,6 +42,9 @@ MAX_FILE_BYTES = 1_000_000
 
 PCT_RE = re.compile(r"(?<![\w.])(\d{1,3}(?:\.\d+)?)(?:\s*[-–]\s*(\d{1,3}(?:\.\d+)?))?\s*%")
 MONEY_RE = re.compile(r"\$\s?\d[\d,]*(?:\.\d+)?")
+MULT_RE = re.compile(
+    r"(?<![\w.])\d+(?:\.\d+)?\s?[x×]\s+(?:faster|slower|cheaper|fewer|smaller|lower|less|better|more efficient)\b", re.I
+)
 CSS_RE = re.compile(r"(width|height|padding|margin|opacity|font-size|flex|top|left|right|bottom|min-|max-|translate)[^;\"']*%", re.I)
 
 DISPLAY_CALLS = {
@@ -386,6 +389,15 @@ def check_readmes(root, files, trees, tests_exist, findings):
                 findings.append(Finding(
                     "unsourced-figure", "NOTE", rel(root, path), i, line.strip()[:140],
                     "A cost figure with no stated basis.", "State the pricing and volume assumptions, or label it illustrative.",
+                ))
+        for m in MULT_RE.finditer(line):
+            # The comparative ("cheaper", "faster") makes this a claim without further wording.
+            if (path, i) not in reported and not provenance_nearby(lines, i - 1):
+                reported.add((path, i))
+                findings.append(Finding(
+                    "unsourced-figure", "NOTE", rel(root, path), i, line.strip()[:140],
+                    f"A comparison ({m.group(0).strip()}) with no stated source or baseline.",
+                    "Say what it is compared against and where the figure comes from.",
                 ))
         if not tests_exist and STRONG_RE.search(line):
             findings.append(Finding(

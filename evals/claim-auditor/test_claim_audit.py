@@ -135,6 +135,16 @@ class UnsourcedFigure(unittest.TestCase):
         )
         self.assertEqual(checks(audit({"README.md": md}), "unsourced-figure"), [])
 
+    def test_multiplier_claims_are_noted_unless_sourced(self):
+        md = (
+            "The model that is 20x cheaper now.\n\n"
+            "Runs 3.5× faster than the baseline.\n\n"
+            "Reported by the vendor: 10x fewer calls.\n\n"
+            "A 3x3 grid of 4x4 tiles.\n"
+        )
+        found = checks(audit({"README.md": md}), "unsourced-figure")
+        self.assertEqual(sorted(f["line"] for f in found), [1, 3])
+
     def test_100_percent_is_ignored_and_money_is_checked(self):
         r = audit({"README.md": "100% local.\n\nSaves $2,147 per million requests.\n\nIllustrative estimate: saves $5,000.\n"})
         found = checks(r, "unsourced-figure")

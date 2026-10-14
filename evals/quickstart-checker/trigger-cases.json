@@ -1,0 +1,66 @@
+{
+  "skill": "quickstart-checker",
+  "purpose": "Trigger-behavior spec for deterministic lexical routing and manual behavior checks.",
+  "cases": [
+    {
+      "id": "quickstart-still-works",
+      "prompt": "does the quick start in this readme still work",
+      "should_trigger": true,
+      "assert": "Runs the check and reports steps that would fail as written."
+    },
+    {
+      "id": "stale-after-copy",
+      "prompt": "are the setup instructions stale after I copied this project into a new repo",
+      "should_trigger": true,
+      "assert": "Flags stale paths and clone steps left over from the old layout."
+    },
+    {
+      "id": "check-before-publishing",
+      "prompt": "check my readme setup steps before I publish this repo",
+      "should_trigger": true,
+      "assert": "Checks the setup steps against the files before publishing."
+    },
+    {
+      "id": "install-steps-broken",
+      "prompt": "will the install instructions in this repo break for a new user",
+      "should_trigger": true,
+      "assert": "Reports missing files, scripts, requirements and undocumented variables."
+    },
+    {
+      "id": "python-version-claim",
+      "prompt": "does the python version in the readme match the code",
+      "should_trigger": true,
+      "assert": "Compares the promised Python version with the syntax the code uses."
+    },
+    {
+      "id": "near-miss-write-readme",
+      "prompt": "write a readme for my project",
+      "should_trigger": false,
+      "assert": "Does not trigger when the user wants a README written."
+    },
+    {
+      "id": "near-miss-run-tests",
+      "prompt": "run the tests",
+      "should_trigger": false,
+      "assert": "Does not trigger for running tests."
+    },
+    {
+      "id": "near-miss-install-deps",
+      "prompt": "install the dependencies",
+      "should_trigger": false,
+      "assert": "Does not trigger when the user wants the setup actually performed."
+    },
+    {
+      "id": "near-miss-fix-typo",
+      "prompt": "fix the typo in the readme",
+      "should_trigger": false,
+      "assert": "Does not trigger for a simple edit."
+    },
+    {
+      "id": "near-miss-summarize",
+      "prompt": "summarize what this repo does",
+      "should_trigger": false,
+      "assert": "Does not trigger for a plain summary."
+    }
+  ]
+}

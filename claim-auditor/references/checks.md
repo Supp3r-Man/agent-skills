@@ -64,12 +64,17 @@ The same percentage is described as a token saving on one line and a size saving
 
 ## unsourced-figure (NOTE)
 
-A percentage, or a dollar amount, in a README, next to savings or performance wording
-(*saves*, *reduction*, *faster*, *cost*, *accuracy* and similar), with no hint of its
-source on the same line, in the header of its table, or in the four non-empty lines
-above it. Example dialogue and spec tables are not claims, so they are skipped. Hints include *reported*,
+A figure in a README with no hint of where it came from. Two kinds count:
+
+- a percentage or a dollar amount, when it sits next to savings or performance wording
+  (*saves*, *reduction*, *faster*, *cost*, *accuracy* and similar)
+- a multiplier such as "20x cheaper" or "3x faster", which is a claim on its own
+
+A figure is considered sourced if a hint appears on the same line, in the header of its
+table, or in the four non-empty lines above it. Hints include *reported*,
 *according to*, *measured*, *benchmark*, *illustrative*, *estimate*, *sample*,
-*reproduce*, *not re-run* and *project-reported*.
+*reproduce*, *not re-run* and *project-reported*. Example dialogue and spec tables are
+not claims, so they are skipped.
 
 - **Why it matters:** readers cannot tell measured from quoted from guessed.
 - **False positives:** a source stated further away, in a footnote, or in a

@@ -25,7 +25,7 @@ A person finds these by reading carefully. This finds the candidates quickly.
 | `library-not-imported` | REVIEW | A listed package that no file imports, but whose import is printed in a string |
 | `mixed-labels` | REVIEW | One number called both a token saving and a size saving |
 | `token-estimate` | NOTE | A token count computed as `len(x) // 4` |
-| `unsourced-figure` | NOTE | A README figure with no hint of its source |
+| `unsourced-figure` | NOTE | A README percentage, cost or multiplier ("20x cheaper") with no hint of its source |
 | `strong-wording` | NOTE | "verified", "proven", "real API calls" with no tests in the repo |
 | `unparsed-file` | NOTE | A Python file that could not be parsed |
 
@@ -68,7 +68,7 @@ Run on the original, unmodified Headroom demo from awesome-llm-apps:
 ## Tests
 
 ```bash
-python3 evals/claim-auditor/test_claim_audit.py     # from the repo root; 32 tests, about a second
+python3 evals/claim-auditor/test_claim_audit.py     # from the repo root; 33 tests, about a second
 ```
 
 The tests cover what each check flags and, just as important, what it must not flag. They were also run against deliberately broken copies of the script to confirm they fail when a check stops working.
