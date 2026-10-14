@@ -1,0 +1,66 @@
+{
+  "skill": "claim-auditor",
+  "purpose": "Trigger-behavior spec for deterministic lexical routing and manual behavior checks.",
+  "cases": [
+    {
+      "id": "numbers-real",
+      "prompt": "are the benchmark numbers in this readme real",
+      "should_trigger": true,
+      "assert": "Runs the audit and reports where the figures come from."
+    },
+    {
+      "id": "overclaiming",
+      "prompt": "check this demo repo for overclaiming",
+      "should_trigger": true,
+      "assert": "Runs the audit and sorts the leads into confirmed, quoted and dismissed."
+    },
+    {
+      "id": "vet-before-republishing",
+      "prompt": "vet this open-source llm project before I republish it",
+      "should_trigger": true,
+      "assert": "Audits the README claims against the code before the user republishes."
+    },
+    {
+      "id": "backs-up-claims",
+      "prompt": "does this repo actually back up its savings claims",
+      "should_trigger": true,
+      "assert": "Compares the README claims with the code and tests."
+    },
+    {
+      "id": "figure-computed",
+      "prompt": "is the percentage in this readme computed or typed into the code",
+      "should_trigger": true,
+      "assert": "Flags typed-in figures and says which are computed."
+    },
+    {
+      "id": "near-miss-write-readme",
+      "prompt": "write a readme for my project",
+      "should_trigger": false,
+      "assert": "Does not trigger when the user wants a README written."
+    },
+    {
+      "id": "near-miss-fix-typo",
+      "prompt": "fix the typo in the readme",
+      "should_trigger": false,
+      "assert": "Does not trigger for a simple edit."
+    },
+    {
+      "id": "near-miss-run-benchmark",
+      "prompt": "run the benchmark and give me the results",
+      "should_trigger": false,
+      "assert": "Does not trigger when the user wants new measurements, not an audit."
+    },
+    {
+      "id": "near-miss-code-review",
+      "prompt": "review my code for bugs",
+      "should_trigger": false,
+      "assert": "Does not trigger for a general code review."
+    },
+    {
+      "id": "near-miss-summarize",
+      "prompt": "summarize what this repo does",
+      "should_trigger": false,
+      "assert": "Does not trigger for a plain summary."
+    }
+  ]
+}
